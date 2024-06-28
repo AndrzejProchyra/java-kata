@@ -26,4 +26,14 @@ class MarsRoverUnitTests {
         assertThat(finalPosition).isEqualTo("1 3 N");
     }
 
+    @Test
+    void should_turn_left_starting_on_1_2_N() {
+        String commands = "5 5\n1 2 N\nL";
+        MarsRover rover = new MarsRover();
+
+        String finalPosition = rover.execute(commands);
+
+        assertThat(finalPosition).isEqualTo("1 2 W");
+
+    }
 }
