@@ -6,18 +6,19 @@ public class MarsRover {
         String startingPosition = instructions.split("\n")[1];
         String startingDirection = startingPosition.substring((startingPosition.length() - 1));
         String commands = extractCommands(instructions);
+        String finalPosition = startingPosition;
         if (commands.startsWith("LL")) {
             return startingPosition.substring(0, 3) + " S";
         }
         if (commands.startsWith("L")) {
             Direction finalDirection = Direction.valueOf(startingDirection).turn("L");
-            return startingPosition.substring(0, 3) + " " + finalDirection;
+            finalPosition = startingPosition.substring(0, 3) + " " + finalDirection;
         }
         if (commands.startsWith("R")) {
             Direction finalDirection = Direction.valueOf(startingDirection).turn("R");
-            return startingPosition.substring(0, 3) + " " + finalDirection;
+            finalPosition = startingPosition.substring(0, 3) + " " + finalDirection;
         }
-        return startingPosition;
+        return finalPosition;
     }
 
     private String extractCommands(String instructions) {
