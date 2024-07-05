@@ -9,14 +9,8 @@ public class MarsRover {
         String finalPosition = startingPosition;
         Direction currentDirection = Direction.valueOf(startingDirection);
         for (int i = 0; i < commands.length(); i++) {
-            if (commands.charAt(i) == 'L') {
-                currentDirection = currentDirection.turn("L");
-                finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
-            }
-            if (commands.charAt(i) == 'R') {
-                currentDirection = currentDirection.turn("R");
-                finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
-            }
+            currentDirection = currentDirection.turn(String.valueOf(commands.charAt(i)));
+            finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
         }
         return finalPosition;
     }
