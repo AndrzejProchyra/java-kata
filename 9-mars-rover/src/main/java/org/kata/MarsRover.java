@@ -10,10 +10,12 @@ public class MarsRover {
             return startingPosition.substring(0, 3) + " S";
         }
         if (commands.startsWith("L")) {
-            return startingPosition.substring(0, 3) + " " + Direction.valueOf(startingDirection).turn("L");
+            Direction finalDirection = Direction.valueOf(startingDirection).turn("L");
+            return startingPosition.substring(0, 3) + " " + finalDirection;
         }
         if (commands.startsWith("R")) {
-            return startingPosition.substring(0, 3) + " E";
+            Direction finalDirection = Direction.valueOf(startingDirection).turn("R");
+            return startingPosition.substring(0, 3) + " " + finalDirection;
         }
         return startingPosition;
     }
