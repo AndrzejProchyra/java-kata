@@ -26,6 +26,10 @@ class MarsRoverUnitTests {
         assertFinalPositionForInstructions("5 5\n1 2 N\nLL", "1 2 S");
     }
 
+    @Test
+    void should_turn_right_twice_starting_on_1_2_N() {
+        assertFinalPositionForInstructions("5 5\n1 2 N\nRR", "1 2 S");
+    }
 
     @Test
     void should_turn_right_starting_on_1_2_N() {

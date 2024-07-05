@@ -14,8 +14,8 @@ public class MarsRover {
                 finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
             }
             if (commands.charAt(i) == 'R') {
-                Direction finalDirection = Direction.valueOf(startingDirection).turn("R");
-                finalPosition = startingPosition.substring(0, 3) + " " + finalDirection;
+                currentDirection = currentDirection.turn("R");
+                finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
             }
         }
         return finalPosition;
