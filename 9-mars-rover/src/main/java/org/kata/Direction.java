@@ -4,15 +4,11 @@ public enum Direction {
     N, W, S, E;
 
     public Direction turn(String command) {
-        if (this.equals(N)) {
-            return W;
-        }
-        if (this.equals(S)) {
-            return E;
-        }
-        if (this.equals(E)) {
-            return N;
-        }
-        return S;
+        return switch (this) {
+            case N -> W;
+            case S -> E;
+            case E -> N;
+            default -> S;
+        };
     }
 }
