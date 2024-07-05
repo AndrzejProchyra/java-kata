@@ -21,6 +21,12 @@ class MarsRoverUnitTests {
         assertFinalPositionForInstructions("5 5\n1 2 N\nL", "1 2 W");
     }
 
+    @Test
+    void should_turn_right_starting_on_1_2_N() {
+        assertFinalPositionForInstructions("5 5\n1 2 N\nR", "1 2 E");
+    }
+
+
     private void assertFinalPositionForInstructions(String instructions, String expectedFinalPosition) {
         MarsRover rover = new MarsRover();
         String finalPosition = rover.execute(instructions);

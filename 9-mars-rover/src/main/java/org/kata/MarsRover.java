@@ -8,6 +8,9 @@ public class MarsRover {
         if (cmds.startsWith("L")) {
             return startingPosition.substring(0, 3) + " W";
         }
+        if (cmds.startsWith("R")) {
+            return startingPosition.substring(0, 3) + " E";
+        }
         return startingPosition;
     }
 }
