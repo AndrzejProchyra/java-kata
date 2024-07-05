@@ -1,9 +1,12 @@
 package org.kata;
 
 public enum Direction {
-    N, W;
+    N, W, S;
 
     public Direction turn(String command) {
-        return W;
+        if (this.equals(N)) {
+            return W;
+        }
+        return S;
     }
 }
