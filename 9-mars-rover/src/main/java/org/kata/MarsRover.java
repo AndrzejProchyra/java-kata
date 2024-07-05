@@ -7,13 +7,11 @@ public class MarsRover {
         String startingDirection = startingPosition.substring((startingPosition.length() - 1));
         String commands = extractCommands(instructions);
         String finalPosition = startingPosition;
-        if (commands.startsWith("LL")) {
-            return startingPosition.substring(0, 3) + " S";
-        }
+        Direction currentDirection = Direction.valueOf(startingDirection);
         for (int i = 0; i < commands.length(); i++) {
             if (commands.charAt(i) == 'L') {
-                Direction finalDirection = Direction.valueOf(startingDirection).turn("L");
-                finalPosition = startingPosition.substring(0, 3) + " " + finalDirection;
+                currentDirection = currentDirection.turn("L");
+                finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
             }
             if (commands.charAt(i) == 'R') {
                 Direction finalDirection = Direction.valueOf(startingDirection).turn("R");
