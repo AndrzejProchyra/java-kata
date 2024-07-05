@@ -18,4 +18,10 @@ class DirectionTest {
         assertThat(W.turn("L"))
                 .isEqualTo(S);
     }
+
+    @Test
+    void should_turn_left_from_South_to_East() {
+        assertThat(S.turn("L"))
+                .isEqualTo(E);
+    }
 }
