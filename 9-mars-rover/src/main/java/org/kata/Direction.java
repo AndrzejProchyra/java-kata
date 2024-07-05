@@ -10,6 +10,9 @@ public enum Direction {
         if (this.equals(S)) {
             return E;
         }
+        if (this.equals(E)) {
+            return N;
+        }
         return S;
     }
 }
