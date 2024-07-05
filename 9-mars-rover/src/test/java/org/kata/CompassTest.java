@@ -18,4 +18,16 @@ class DirectionTest {
         assertThat(initialDirection.turn("L"))
                 .isEqualTo(finalDirection);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "N, E",
+            "E, S",
+            "S, W",
+            "W, N"
+    })
+    void should_turn_right(Direction initialDirection, Direction finalDirection) {
+        assertThat(initialDirection.turn("R"))
+                .isEqualTo(finalDirection);
+    }
 }
