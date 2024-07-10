@@ -1,5 +1,8 @@
 package org.kata;
 
+import static org.kata.Direction.N;
+import static org.kata.Direction.S;
+
 public class MarsRover {
 
     public String execute(String instructions) {
@@ -10,7 +13,12 @@ public class MarsRover {
         for (int i = 0; i < commands.length(); i++) {
             String command = String.valueOf(commands.charAt(i));
             if (command.equals("M")) {
-                startingPosition = startingPosition.incrementY();
+                if (currentDirection.equals(N)) {
+                    startingPosition = startingPosition.incrementY();
+                }
+                if (currentDirection.equals(S)) {
+                    startingPosition = startingPosition.decrementY();
+                }
             }
             if (command.equals("L") || command.equals("R")) {
                 currentDirection = currentDirection.turn(command);

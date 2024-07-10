@@ -21,6 +21,10 @@ public class Position {
         return new Position(x, y + 1);
     }
 
+    public Position decrementY() {
+        return new Position(x, y - 1);
+    }
+
     @Override
     public String toString() {
         return x + " " + y;
