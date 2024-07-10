@@ -29,6 +29,10 @@ public class Position {
         return new Position(x - 1, y);
     }
 
+    public Position incrementX() {
+        return new Position(x + 1, y);
+    }
+
     @Override
     public String toString() {
         return x + " " + y;

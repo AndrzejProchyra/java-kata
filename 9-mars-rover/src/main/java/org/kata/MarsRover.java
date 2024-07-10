@@ -22,6 +22,9 @@ public class MarsRover {
                 if (currentDirection.equals(W)) {
                     position = position.decrementX();
                 }
+                if (currentDirection.equals(E)) {
+                    position = position.incrementX();
+                }
             }
             if (command.equals("L") || command.equals("R")) {
                 currentDirection = currentDirection.turn(command);
