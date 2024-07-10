@@ -3,10 +3,9 @@ package org.kata;
 public class MarsRover {
 
     public String execute(String instructions) {
-        String startingPosition = instructions.split("\n")[1];
-        String startingDirection = startingPosition.substring((startingPosition.length() - 1));
+        Position startingPosition = Position.fromString(instructions.split("\n")[1]);
+        String startingDirection = instructions.split("\n")[1].substring((instructions.split("\n")[1].length() - 1));
         String commands = extractCommands(instructions);
-        String finalPosition = startingPosition;
         Direction currentDirection = Direction.valueOf(startingDirection);
         for (int i = 0; i < commands.length(); i++) {
             String command = String.valueOf(commands.charAt(i));
@@ -14,9 +13,8 @@ public class MarsRover {
                 return "0 1 N";
             }
             currentDirection = currentDirection.turn(command);
-            finalPosition = startingPosition.substring(0, 3) + " " + currentDirection;
         }
-        return finalPosition;
+        return startingPosition + " " + currentDirection;
     }
 
     private String extractCommands(String instructions) {
