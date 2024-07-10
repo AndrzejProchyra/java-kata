@@ -56,6 +56,10 @@ class MarsRoverUnitTests {
         assertFinalPositionForInstructions("5 5\n1 1 S\nM", "1 0 S");
     }
 
+    @Test
+    void should_move_West_starting_on_1_1_W() {
+        assertFinalPositionForInstructions("5 5\n2 2 W\nMM", "0 2 W");
+    }
 
     private void assertFinalPositionForInstructions(String instructions, String expectedFinalPosition) {
         MarsRover rover = new MarsRover();

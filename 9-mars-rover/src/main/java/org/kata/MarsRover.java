@@ -1,7 +1,6 @@
 package org.kata;
 
-import static org.kata.Direction.N;
-import static org.kata.Direction.S;
+import static org.kata.Direction.*;
 
 public class MarsRover {
 
@@ -19,6 +18,9 @@ public class MarsRover {
                 }
                 if (currentDirection.equals(S)) {
                     position = position.decrementY();
+                }
+                if (currentDirection.equals(W)) {
+                    position = position.decrementX();
                 }
             }
             if (command.equals("L") || command.equals("R")) {
