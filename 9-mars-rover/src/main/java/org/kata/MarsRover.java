@@ -6,10 +6,11 @@ import static org.kata.Direction.S;
 public class MarsRover {
 
     public String execute(String instructions) {
-        Position position = Position.fromString(instructions.split("\n")[1]);
-        String startingDirection = instructions.split("\n")[1].substring((instructions.split("\n")[1].length() - 1));
-        String commands = extractCommands(instructions);
+        String[] instructionParts = instructions.split("\n");
+        Position position = Position.fromString(instructionParts[1]);
+        String startingDirection = instructionParts[1].substring((instructionParts[1].length() - 1));
         Direction currentDirection = Direction.valueOf(startingDirection);
+        String commands = extractCommands(instructions);
         for (int i = 0; i < commands.length(); i++) {
             String command = String.valueOf(commands.charAt(i));
             if (command.equals("M")) {
