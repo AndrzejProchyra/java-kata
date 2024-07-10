@@ -17,6 +17,10 @@ public class Position {
         return new Position(x, y);
     }
 
+    Position incrementY() {
+        return new Position(x, y + 1);
+    }
+
     @Override
     public String toString() {
         return x + " " + y;

@@ -10,7 +10,7 @@ public class MarsRover {
         for (int i = 0; i < commands.length(); i++) {
             String command = String.valueOf(commands.charAt(i));
             if (command.equals("M")) {
-                return "0 1 N";
+                return startingPosition.incrementY() + " " + currentDirection;
             }
             currentDirection = currentDirection.turn(command);
         }
