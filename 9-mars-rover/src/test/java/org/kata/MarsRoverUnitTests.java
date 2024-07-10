@@ -1,6 +1,5 @@
 package org.kata;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,6 +44,11 @@ class MarsRoverUnitTests {
     @Test
     void should_move_one_square_North_starting_on_1_1_N() {
         assertFinalPositionForInstructions("5 5\n1 1 N\nM", "1 2 N");
+    }
+
+    @Test
+    void should_move_two_squares_North_starting_on_1_1_N() {
+        assertFinalPositionForInstructions("5 5\n1 1 N\nMM", "1 3 N");
     }
 
     private void assertFinalPositionForInstructions(String instructions, String expectedFinalPosition) {

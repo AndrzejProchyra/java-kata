@@ -10,9 +10,11 @@ public class MarsRover {
         for (int i = 0; i < commands.length(); i++) {
             String command = String.valueOf(commands.charAt(i));
             if (command.equals("M")) {
-                return startingPosition.incrementY() + " " + currentDirection;
+                startingPosition = startingPosition.incrementY();
             }
-            currentDirection = currentDirection.turn(command);
+            if (command.equals("L") || command.equals("R")) {
+                currentDirection = currentDirection.turn(command);
+            }
         }
         return startingPosition + " " + currentDirection;
     }
