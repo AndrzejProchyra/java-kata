@@ -1,4 +1,7 @@
-package socialnetwork;
+package io.prochyra.socialnetwork.application;
+
+import io.prochyra.socialnetwork.application.model.User;
+import io.prochyra.socialnetwork.application.model.UserRepository;
 
 import java.util.List;
 
