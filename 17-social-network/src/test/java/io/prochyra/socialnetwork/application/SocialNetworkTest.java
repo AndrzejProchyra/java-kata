@@ -12,7 +12,7 @@ class SocialNetworkTest {
     void post_creates_a_user() {
         var userRepository = mock(UserRepository.class);
         var alice = new User("Alice");
-        var socialNetwork = new SocialNetwork(userRepository);
+        var socialNetwork = new SocialNetwork(userRepository, null);
 
         socialNetwork.post("Alice", "any message");
 
