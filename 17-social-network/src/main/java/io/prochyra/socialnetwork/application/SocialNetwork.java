@@ -13,7 +13,7 @@ public class SocialNetwork {
         this.userRepository = userRepository;
     }
 
-    public List<Post> timelineFor(String alice) {
+    public List<Post> timelineFor(String userName) {
         return null;
     }
 
