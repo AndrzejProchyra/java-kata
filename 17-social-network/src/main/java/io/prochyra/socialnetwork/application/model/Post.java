@@ -1,4 +1,4 @@
-package io.prochyra.socialnetwork.application;
+package io.prochyra.socialnetwork.application.model;
 
 import java.time.Instant;
 
