@@ -6,7 +6,7 @@ import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 
-public final class User {
+public class User {
 
     private final String name;
     private final List<Post> timeline;
