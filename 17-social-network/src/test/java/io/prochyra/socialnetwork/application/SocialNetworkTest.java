@@ -1,21 +1,22 @@
 package io.prochyra.socialnetwork.application;
 
 import io.prochyra.socialnetwork.application.model.User;
-import io.prochyra.socialnetwork.application.model.UserRepository;
+import io.prochyra.socialnetwork.infra.persistence.InMemoryUserRepository;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.mock;
+import static org.assertj.core.api.BDDAssertions.then;
 
 class SocialNetworkTest {
     @Test
     void post_creates_a_user() {
-        var userRepository = mock(UserRepository.class);
+        var userRepository = new InMemoryUserRepository();
         var alice = new User("Alice");
         var socialNetwork = new SocialNetwork(userRepository, null);
 
         socialNetwork.post("Alice", "any message");
 
-        then(userRepository).should().save(alice);
+        then(userRepository.findByName("Alice")).get()
+                .usingRecursiveComparison()
+                .isEqualTo(alice);
     }
 }
