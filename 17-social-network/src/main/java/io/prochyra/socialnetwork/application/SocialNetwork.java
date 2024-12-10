@@ -21,7 +21,8 @@ public class SocialNetwork {
     }
 
     public void post(String userName, String message) {
-        var user = new User(userName);
+        var user = userRepository.findByName(userName)
+                .orElseGet(() -> new User(userName));
         user.publish(message, instantSource.instant());
         userRepository.save(user);
     }
