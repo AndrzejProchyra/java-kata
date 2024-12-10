@@ -1,11 +1,10 @@
 package io.prochyra.socialnetwork;
 
-import io.prochyra.socialnetwork.application.Post;
+import io.prochyra.socialnetwork.application.model.Post;
 import io.prochyra.socialnetwork.application.SocialNetwork;
 import io.prochyra.socialnetwork.infra.persistence.InMemoryUserRepository;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
 import java.time.Instant;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -20,9 +19,8 @@ class AcceptanceTest {
         var message = "I love the weather today";
 
         socialNetwork.post("Alice", message);
-        instantSource.advanceBy(Duration.ofMinutes(5));
 
-        var expectedPost = new Post(message, postTime.plus(Duration.ofMinutes(5)));
+        var expectedPost = new Post(message, postTime);
         then(socialNetwork.timelineFor("Alice"))
                 .contains(expectedPost);
     }
