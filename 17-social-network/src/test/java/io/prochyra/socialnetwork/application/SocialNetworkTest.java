@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Optional;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
@@ -75,6 +76,21 @@ class SocialNetworkTest {
                         new PostWithName("Steve", "third message", NOW.plus(Duration.ofMinutes(2))),
                         new PostWithName("Steve", "second message", NOW.plus(Duration.ofMinutes(1))),
                         new PostWithName("Steve", "first message", NOW));
+    }
+
+    @Test
+    void should_follow_a_user() {
+        var charlie = new User("Charlie");
+        userRepository.save(charlie);
+        var bob = new User("Bob");
+        userRepository.save(bob);
+
+        socialNetwork.follow("Bob", "Charlie");
+
+        Optional<User> retrievedBob = userRepository.findByName("Bob");
+        then(retrievedBob).isPresent();
+        then(retrievedBob.get().followedUsers())
+                .containsExactly("Charlie");
     }
 
     private void advanceTimeByMinutes(int minutes) {

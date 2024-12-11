@@ -7,6 +7,7 @@ import io.prochyra.socialnetwork.application.model.UserRepository;
 import java.time.InstantSource;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class SocialNetwork {
     private final UserRepository userRepository;
@@ -33,8 +34,10 @@ public class SocialNetwork {
         userRepository.save(user);
     }
 
-    public void follow(String sourceUser, String targetUser) {
-
+    public void follow(String sourceUserName, String targetUserName) {
+        var source = userRepository.findByName(sourceUserName);
+        var target = userRepository.findByName(targetUserName);
+        source.ifPresent(user -> user.follow(target.get()));
     }
 
     public List<PostWithName> wallFor(String userName) {
