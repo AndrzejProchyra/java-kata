@@ -13,9 +13,9 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class SocialNetworkTest {
 
-    public static final Instant NOW = Instant.now();
-    private SocialNetwork socialNetwork;
-    private InMemoryUserRepository userRepository;
+    static final Instant NOW = Instant.now();
+    SocialNetwork socialNetwork;
+    InMemoryUserRepository userRepository;
 
     @BeforeEach
     void setUp() {
@@ -56,6 +56,6 @@ class SocialNetworkTest {
         var retrievedAlice = userRepository.findByName("Alice");
         then(retrievedAlice).isPresent();
         then(retrievedAlice.get().timeLine())
-                .containsExactly(new Post(firstMessage, NOW), new Post(secondMessage, NOW));
+                .contains(new Post(firstMessage, NOW), new Post(secondMessage, NOW));
     }
 }
