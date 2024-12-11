@@ -5,6 +5,7 @@ import io.prochyra.socialnetwork.application.model.User;
 import io.prochyra.socialnetwork.application.model.UserRepository;
 
 import java.time.InstantSource;
+import java.util.Comparator;
 import java.util.List;
 
 public class SocialNetwork {
@@ -17,7 +18,11 @@ public class SocialNetwork {
     }
 
     public List<Post> timelineFor(String userName) {
-        return userRepository.findByName(userName).get().timeLine();
+        return userRepository.findByName(userName).get()
+                .timeLine()
+                .stream()
+                .sorted(Comparator.comparing(Post::timestamp).reversed())
+                .toList();
     }
 
     public void post(String userName, String message) {

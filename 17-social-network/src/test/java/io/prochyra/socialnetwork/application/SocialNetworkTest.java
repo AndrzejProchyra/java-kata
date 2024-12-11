@@ -7,6 +7,7 @@ import io.prochyra.socialnetwork.infra.persistence.InMemoryUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.Instant;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -16,11 +17,13 @@ class SocialNetworkTest {
     static final Instant NOW = Instant.now();
     SocialNetwork socialNetwork;
     InMemoryUserRepository userRepository;
+    AdjustableInstantSource instantSource;
 
     @BeforeEach
     void setUp() {
         userRepository = new InMemoryUserRepository();
-        socialNetwork = new SocialNetwork(userRepository, new AdjustableInstantSource(NOW));
+        instantSource = new AdjustableInstantSource(NOW);
+        socialNetwork = new SocialNetwork(userRepository, instantSource);
     }
 
     @Test
@@ -57,5 +60,25 @@ class SocialNetworkTest {
         then(retrievedAlice).isPresent();
         then(retrievedAlice.get().timeLine())
                 .contains(new Post(firstMessage, NOW), new Post(secondMessage, NOW));
+    }
+
+    @Test
+    void should_return_timeline_in_reverse_chronological_order() {
+        socialNetwork.post("Steve", "first message");
+        advanceTimeByMinutes(1);
+        socialNetwork.post("Steve", "second message");
+        advanceTimeByMinutes(1);
+        socialNetwork.post("Steve", "third message");
+
+        then(socialNetwork.timelineFor("Steve"))
+                .containsExactly(
+                        new Post("third message", NOW.plus(Duration.ofMinutes(2))),
+                        new Post("second message", NOW.plus(Duration.ofMinutes(1))),
+                        new Post("first message", NOW)
+                );
+    }
+
+    private void advanceTimeByMinutes(int minutes) {
+        instantSource.advanceBy(Duration.ofMinutes(minutes));
     }
 }
