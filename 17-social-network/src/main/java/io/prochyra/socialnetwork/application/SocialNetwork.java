@@ -7,7 +7,7 @@ import io.prochyra.socialnetwork.application.model.UserRepository;
 import java.time.InstantSource;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Stream;
 
 public class SocialNetwork {
     private final UserRepository userRepository;
@@ -41,6 +41,13 @@ public class SocialNetwork {
     }
 
     public List<PostWithName> wallFor(String userName) {
-        return null;
+        var user = userRepository.findByName(userName).get();
+        return Stream.concat(
+                        timelineFor(userName).stream(),
+                        user.followedUsers()
+                                .stream()
+                                .flatMap(name -> timelineFor(name).stream()))
+                .sorted(Comparator.comparing(PostWithName::timestamp).reversed())
+                .toList();
     }
 }
