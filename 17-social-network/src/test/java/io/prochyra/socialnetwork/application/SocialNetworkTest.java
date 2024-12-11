@@ -72,10 +72,9 @@ class SocialNetworkTest {
 
         then(socialNetwork.timelineFor("Steve"))
                 .containsExactly(
-                        new Post("third message", NOW.plus(Duration.ofMinutes(2))),
-                        new Post("second message", NOW.plus(Duration.ofMinutes(1))),
-                        new Post("first message", NOW)
-                );
+                        new PostWithName("Steve", "third message", NOW.plus(Duration.ofMinutes(2))),
+                        new PostWithName("Steve", "second message", NOW.plus(Duration.ofMinutes(1))),
+                        new PostWithName("Steve", "first message", NOW));
     }
 
     private void advanceTimeByMinutes(int minutes) {
