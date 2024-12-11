@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
@@ -47,6 +48,27 @@ class AcceptanceTest {
         var expectedSecondPost = new Post(secondMessage, NOW.plus(Duration.ofMinutes(1)));
         then(socialNetwork.timelineFor("Bob"))
                 .containsExactly(expectedSecondPost, expectedFirstPost);
+    }
+
+    @Test
+    void Charlie_subscribes_to_Alice_and_Bobs_timeline_and_views_an_aggregate_of_all_posts() {
+        socialNetwork.post("Alice", "I love the weather today");
+        advanceTimeByMinutes(5);
+        socialNetwork.post("Charlie", "I'm in New York today! Anyone want to have a coffee?");
+        advanceTimeBySeconds(2);
+
+        socialNetwork.follow("Charlie", "Alice");
+
+        var charliesPost = new Post(
+                "I'm in New York today! Anyone want to have a coffee?", NOW.plus(Duration.ofMinutes(5)));
+        var alicesPost = new Post("I love the weather today", NOW);
+        List<Post> charliesWall = socialNetwork.wallFor("Charlie");
+        then(charliesWall)
+                .containsExactly(charliesPost, alicesPost);
+    }
+
+    private void advanceTimeBySeconds(int seconds) {
+        instantSource.advanceBy(Duration.ofSeconds(seconds));
     }
 
     private void advanceTimeByMinutes(int minutes) {

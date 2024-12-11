@@ -31,4 +31,12 @@ public class SocialNetwork {
         user.publish(message, instantSource.instant());
         userRepository.save(user);
     }
+
+    public void follow(String sourceUser, String targetUser) {
+
+    }
+
+    public List<Post> wallFor(String userName) {
+        return null;
+    }
 }
