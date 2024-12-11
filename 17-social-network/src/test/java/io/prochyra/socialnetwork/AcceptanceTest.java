@@ -1,14 +1,13 @@
 package io.prochyra.socialnetwork;
 
+import io.prochyra.socialnetwork.application.PostWithName;
 import io.prochyra.socialnetwork.application.SocialNetwork;
-import io.prochyra.socialnetwork.application.model.Post;
 import io.prochyra.socialnetwork.infra.persistence.InMemoryUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.List;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
@@ -30,7 +29,7 @@ class AcceptanceTest {
 
         socialNetwork.post("Alice", message);
 
-        var expectedPost = new Post(message, NOW);
+        var expectedPost = new PostWithName("Alice", message, NOW);
         then(socialNetwork.timelineFor("Alice"))
                 .contains(expectedPost);
     }
@@ -44,8 +43,8 @@ class AcceptanceTest {
         advanceTimeByMinutes(1);
         socialNetwork.post("Bob", secondMessage);
 
-        var expectedFirstPost = new Post(firstMessage, NOW);
-        var expectedSecondPost = new Post(secondMessage, NOW.plus(Duration.ofMinutes(1)));
+        var expectedFirstPost = new PostWithName("Bob", firstMessage, NOW);
+        var expectedSecondPost = new PostWithName("Bob", secondMessage, NOW.plus(Duration.ofMinutes(1)));
         then(socialNetwork.timelineFor("Bob"))
                 .containsExactly(expectedSecondPost, expectedFirstPost);
     }
@@ -59,11 +58,11 @@ class AcceptanceTest {
 
         socialNetwork.follow("Charlie", "Alice");
 
-        var charliesPost = new Post(
-                "I'm in New York today! Anyone want to have a coffee?", NOW.plus(Duration.ofMinutes(5)));
-        var alicesPost = new Post("I love the weather today", NOW);
-        List<Post> charliesWall = socialNetwork.wallFor("Charlie");
-        then(charliesWall)
+        var charliesPost = new PostWithName("Charlie",
+                "I'm in New York today! Anyone want to have a coffee?",
+                NOW.plus(Duration.ofMinutes(5)));
+        var alicesPost = new PostWithName("Alice", "I love the weather today", NOW);
+        then(socialNetwork.wallFor("Charlie"))
                 .containsExactly(charliesPost, alicesPost);
     }
 

@@ -17,11 +17,12 @@ public class SocialNetwork {
         this.instantSource = instantSource;
     }
 
-    public List<Post> timelineFor(String userName) {
+    public List<PostWithName> timelineFor(String userName) {
         return userRepository.findByName(userName).get()
                 .timeLine()
                 .stream()
                 .sorted(Comparator.comparing(Post::timestamp).reversed())
+                .map(post -> new PostWithName(userName, post.message(), post.timestamp()))
                 .toList();
     }
 
@@ -36,7 +37,7 @@ public class SocialNetwork {
 
     }
 
-    public List<Post> wallFor(String userName) {
+    public List<PostWithName> wallFor(String userName) {
         return null;
     }
 }
