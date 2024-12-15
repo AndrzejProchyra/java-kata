@@ -24,13 +24,14 @@ class AcceptanceTest {
     }
 
     @Test
-    void given_Alice_posts_a_message_then_she_can_see_it_on_her_timeline() {
+    void when_Alice_posts_message_she_can_see_it_on_her_timeline() {
         var message = "I love the weather today";
+        var expectedPost = new PostWithName("Alice", message, NOW);
 
         socialNetwork.post("Alice", message);
 
-        var expectedPost = new PostWithName("Alice", message, NOW);
-        then(socialNetwork.timelineFor("Alice"))
+        var aliceTimeline = socialNetwork.timelineFor("Alice");
+        then(aliceTimeline)
                 .contains(expectedPost);
     }
 
