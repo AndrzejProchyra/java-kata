@@ -6,10 +6,12 @@ import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 
+// Comment: this aggregate could contain more of the logic
 public class User {
 
     private final String name;
     private final List<Post> timeline;
+    // ID value object for the UserId
     private final List<String> following;
 
     public User(String name) {

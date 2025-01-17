@@ -42,6 +42,7 @@ public class SocialNetwork {
 
     public List<PostWithName> wallFor(String userName) {
         var user = userRepository.findByName(userName).get();
+        // Comment: push part of this stream inside the User aggregate?
         return Stream.concat(
                         timelineFor(userName).stream(),
                         user.followedUsers()
