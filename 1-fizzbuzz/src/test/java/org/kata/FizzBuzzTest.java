@@ -19,4 +19,11 @@ class FizzBuzzTest {
         String result = fizzBuzz.fizzBuzzOf(1);
         assertThat(result).isEqualTo("1");
     }
+
+    @Test
+    void shouldReturn2For2() {
+        String result = fizzBuzz.fizzBuzzOf(2);
+        assertThat(result).isEqualTo("2");
+    }
+
 }
