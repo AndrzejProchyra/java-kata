@@ -17,15 +17,22 @@ class FizzBuzzTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"1,1", "2,2","4,4"})
+    @CsvSource({"1,1", "2,2", "4,4"})
     void shouldBeTheIntegerItself(int n, String expected) {
         String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo(expected);
     }
 
     @Test
-    void shouldBeFizzFor3(){
+    void shouldBeFizzFor3() {
         String result = fizzBuzz.fizzBuzzOf(3);
         assertThat(result).isEqualTo("fizz");
     }
+
+    @Test
+    void shouldBeFizzFor6() {
+        String result = fizzBuzz.fizzBuzzOf(6);
+        assertThat(result).isEqualTo("fizz");
+    }
+
 }
