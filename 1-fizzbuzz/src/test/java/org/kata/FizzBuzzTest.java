@@ -25,15 +25,15 @@ class FizzBuzzTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3,6,9})
+    @ValueSource(ints = {3, 6, 9})
     void shouldBeFizzForMultipleOf3(int n) {
         String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo("fizz");
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {5})
-    void shouldBeBuzzFor5(int n) {
+    @ValueSource(ints = {5, 10, 25, 125})
+    void shouldBeBuzzForMultipleOf5(int n) {
         String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo("buzz");
     }
