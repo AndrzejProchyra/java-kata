@@ -26,4 +26,9 @@ class FizzBuzzTest {
         assertThat(result).isEqualTo("2");
     }
 
+    @Test
+    void shouldReturn4For4() {
+        String result = fizzBuzz.fizzBuzzOf(4);
+        assertThat(result).isEqualTo("4");
+    }
 }
