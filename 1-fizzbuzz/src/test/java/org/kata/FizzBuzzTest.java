@@ -11,12 +11,12 @@ class FizzBuzzTest {
     }
 
     @Test
-    void shouldReturn1For1(){
+    void shouldReturn1For1() {
         String result = fizzBuzzOf(1);
         assertThat(result).isEqualTo("1");
     }
 
     private String fizzBuzzOf(int n) {
-        return null;
+        return "1";
     }
 }
