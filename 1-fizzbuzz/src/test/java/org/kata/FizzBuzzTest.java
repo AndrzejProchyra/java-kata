@@ -9,4 +9,14 @@ class FizzBuzzTest {
     void true_is_true() {
         assertThat(true).isTrue();
     }
+
+    @Test
+    void shouldReturn1For1(){
+        String result = fizzBuzzOf(1);
+        assertThat(result).isEqualTo("1");
+    }
+
+    private String fizzBuzzOf(int n) {
+        return null;
+    }
 }
