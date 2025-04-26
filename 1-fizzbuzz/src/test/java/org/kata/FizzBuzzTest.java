@@ -5,10 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FizzBuzzTest {
-    @Test
-    void true_is_true() {
-        assertThat(true).isTrue();
-    }
 
     @Test
     void shouldReturn1For1() {
