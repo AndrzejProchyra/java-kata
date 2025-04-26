@@ -22,4 +22,10 @@ class FizzBuzzTest {
         String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    void shouldBeFizzFor3(){
+        String result = fizzBuzz.fizzBuzzOf(3);
+        assertThat(result).isEqualTo("fizz");
+    }
 }
