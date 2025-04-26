@@ -2,6 +2,9 @@ package org.kata;
 
 public class FizzBuzz {
     String fizzBuzzOf(int n) {
-        return "1";
+        if (n == 1) {
+            return "1";
+        }
+        return "2";
     }
 }
