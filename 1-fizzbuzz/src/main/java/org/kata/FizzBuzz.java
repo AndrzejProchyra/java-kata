@@ -5,7 +5,14 @@ public class FizzBuzz {
         if (isFizzy(n)) {
             return "fizz";
         }
+        if (isBuzzy(n)) {
+            return "buzz";
+        }
         return Integer.toString(n);
+    }
+
+    private boolean isBuzzy(int n) {
+        return n % 5 == 0;
     }
 
     private static boolean isFizzy(int n) {
