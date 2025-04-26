@@ -2,6 +2,8 @@ package org.kata;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,21 +16,10 @@ class FizzBuzzTest {
         fizzBuzz = new FizzBuzz();
     }
 
-    @Test
-    void shouldReturn1For1() {
-        String result = fizzBuzz.fizzBuzzOf(1);
-        assertThat(result).isEqualTo("1");
-    }
-
-    @Test
-    void shouldReturn2For2() {
-        String result = fizzBuzz.fizzBuzzOf(2);
-        assertThat(result).isEqualTo("2");
-    }
-
-    @Test
-    void shouldReturn4For4() {
-        String result = fizzBuzz.fizzBuzzOf(4);
-        assertThat(result).isEqualTo("4");
+    @ParameterizedTest
+    @CsvSource({"1,1", "2,2","4,4"})
+    void shouldBeTheIntegerItself(int n, String expected) {
+        String result = fizzBuzz.fizzBuzzOf(n);
+        assertThat(result).isEqualTo(expected);
     }
 }
