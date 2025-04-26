@@ -30,4 +30,11 @@ class FizzBuzzTest {
         String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo("fizz");
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {5})
+    void shouldBeBuzzFor5(int n) {
+        String result = fizzBuzz.fizzBuzzOf(n);
+        assertThat(result).isEqualTo("buzz");
+    }
 }
