@@ -2,6 +2,9 @@ package org.kata;
 
 public class FizzBuzz {
     String fizzBuzzOf(int n) {
+        if(isFizzy(n)&&isBuzzy(n)){
+            return "fizzbuzz";
+        }
         if (isFizzy(n)) {
             return "fizz";
         }
