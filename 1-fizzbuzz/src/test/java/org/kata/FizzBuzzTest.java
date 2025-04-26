@@ -1,18 +1,22 @@
 package org.kata;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FizzBuzzTest {
 
-    @Test
-    void shouldReturn1For1() {
-        String result = fizzBuzzOf(1);
-        assertThat(result).isEqualTo("1");
+    private FizzBuzz fizzBuzz;
+
+    @BeforeEach
+    void setUp() {
+        fizzBuzz = new FizzBuzz();
     }
 
-    private String fizzBuzzOf(int n) {
-        return "1";
+    @Test
+    void shouldReturn1For1() {
+        String result = fizzBuzz.fizzBuzzOf(1);
+        assertThat(result).isEqualTo("1");
     }
 }
