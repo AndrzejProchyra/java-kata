@@ -39,8 +39,8 @@ class FizzBuzzTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {15})
-    void shouldBeFizzBuzzFor15(int n) {
+    @ValueSource(ints = {15,30,45})
+    void shouldBeFizzBuzzForMultipleOfBoth3And5(int n) {
         String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo("fizzbuzz");
     }
