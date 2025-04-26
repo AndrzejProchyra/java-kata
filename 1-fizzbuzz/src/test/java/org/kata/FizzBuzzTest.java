@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,16 +24,10 @@ class FizzBuzzTest {
         assertThat(result).isEqualTo(expected);
     }
 
-    @Test
-    void shouldBeFizzFor3() {
-        String result = fizzBuzz.fizzBuzzOf(3);
+    @ParameterizedTest
+    @ValueSource(ints = {3,6,9})
+    void shouldBeFizzForMultipleOf3(int n) {
+        String result = fizzBuzz.fizzBuzzOf(n);
         assertThat(result).isEqualTo("fizz");
     }
-
-    @Test
-    void shouldBeFizzFor6() {
-        String result = fizzBuzz.fizzBuzzOf(6);
-        assertThat(result).isEqualTo("fizz");
-    }
-
 }
